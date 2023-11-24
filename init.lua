@@ -17,9 +17,17 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugin = {
     {
-        "folke/tokyonight.nvim",
-        priority = 1001,
-        init = function() vim.cmd "colorscheme tokyonight" end
+        "ray-x/starry.nvim",
+        lazy = false,
+        config = function()
+            require("starry").setup {
+                starry_daylight_switch = true
+            }
+        end,
+        opts = {
+            starry_daylight_switch = false
+        },
+        init = function() vim.cmd "colorscheme earlysummer" end
     },
     {
         "williamboman/mason-lspconfig",
@@ -49,6 +57,28 @@ local plugin = {
         opts = {
             ensure_installed = { "lua" }, auto_install = true, highlight = { enable = true, },
         }
+    },
+    {
+        "nvimdev/lspsaga.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        }
+    },
+    {
+        "nvimdev/dashboard-nvim",
+        event = "ViMEnter",
+        config = function()
+            require("dashboard").setup {
+                theme = "doom",
+                config = {
+                }
+            }
+        end,
+        opts = {
+            theme = "hyper"
+        },
+        dependencies = { "nvim-tree/nvim-web-devicons" }
     },
     {
         "hrsh7th/nvim-cmp",
