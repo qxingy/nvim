@@ -15,19 +15,16 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+
 local plugin = {
     {
-        "ray-x/starry.nvim",
-        lazy = false,
-        config = function()
-            require("starry").setup {
-                starry_daylight_switch = true
-            }
-        end,
+        "navarasu/onedark.nvim",
         opts = {
-            starry_daylight_switch = false
+            style = "darker",
         },
-        init = function() vim.cmd "colorscheme earlysummer" end
+        init = function()
+            vim.cmd "colorscheme onedark"
+        end
     },
     {
         "williamboman/mason-lspconfig",
@@ -47,7 +44,6 @@ local plugin = {
     { "nvim-tree/nvim-web-devicons" },
     { "nvim-tree/nvim-tree.lua",             opts = {} },
     { "nvim-lualine/lualine.nvim",           opts = { theme = "auto" } },
-    { "utilyre/barbecue.nvim",               opts = {},                dependencies = { "SmiteshP/nvim-navic" } },
     { "lukas-reineke/indent-blankline.nvim", main = "ibl",             opts = {} },
     {
         "nvim-treesitter/nvim-treesitter",
@@ -55,7 +51,7 @@ local plugin = {
             require "nvim-treesitter.configs".setup(opt)
         end,
         opts = {
-            ensure_installed = { "lua" }, auto_install = true, highlight = { enable = true, },
+            ensure_installed = { "lua", "go", "markdown","markdown_inline" }, auto_install = true, highlight = { enable = true, },
         }
     },
     {
@@ -63,22 +59,12 @@ local plugin = {
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-tree/nvim-web-devicons",
-        }
-    },
-    {
-        "nvimdev/dashboard-nvim",
-        event = "ViMEnter",
-        config = function()
-            require("dashboard").setup {
-                theme = "doom",
-                config = {
-                }
-            }
-        end,
-        opts = {
-            theme = "hyper"
         },
-        dependencies = { "nvim-tree/nvim-web-devicons" }
+        opts = {
+            outline = {
+                layout = "float"
+            }
+        }
     },
     {
         "hrsh7th/nvim-cmp",
@@ -134,8 +120,7 @@ local plugin = {
             { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} }
         }
     },
-    {
-        "numToStr/Comment.nvim", opts = {}, lazy = fase },
+    { "numToStr/Comment.nvim",         opts = {},                                 lazy = fase },
     { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
     {
         "folke/which-key.nvim",
