@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
 --鼠标支持
---vim.o.mouse = "a"
+vim.o.mouse = "a"
 
 vim.wo.number = true
 --相对行号
