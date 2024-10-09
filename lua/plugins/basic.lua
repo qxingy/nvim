@@ -6,6 +6,7 @@ local M = {
 	{
 		"navarasu/onedark.nvim",
 		opts = {
+			-- transparent = true,
 			style = "darker",
 		},
 		init = function()
@@ -43,6 +44,19 @@ local M = {
 		opts = {
 			direction = "float",
 			hidden = true,
+		}
+	},
+	{
+		"romgrk/barbar.nvim",
+		dependencies = {
+				"lewis6991/gitsigns.nvim",
+				"nvim-tree/nvim-web-devicons",
+		},
+		init = function()
+				vim.g.barbar_auto_setup = false
+		end,
+		opt = {
+
 		}
 	}
 }

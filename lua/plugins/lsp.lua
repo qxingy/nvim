@@ -1,16 +1,17 @@
 local M = {
-	{
-		"williamboman/mason-lspconfig",
-		opts = { ensure_installed = { "lua_ls", "gopls" } },
-		dependencies = {
-			{ "williamboman/mason.nvim", opts = {} },
-		},
-	},
+	-- {
+	-- 	"williamboman/mason-lspconfig",
+	-- 	opts = { ensure_installed = { "stylua", "lua_ls", "clangd", "clang-format" } },
+	-- 	dependencies = {
+	-- 		{ "williamboman/mason.nvim", opts = {} },
+	-- 	},
+	-- },
 	{
 		"neovim/nvim-lspconfig",
 		priority = 1000,
 		config = function()
 			require("lspconfig").gopls.setup {}
+			require("lspconfig").clangd.setup {}
 		end
 	},
 	{
@@ -19,7 +20,7 @@ local M = {
 			require "nvim-treesitter.configs".setup(opt)
 		end,
 		opts = {
-			ensure_installed = { "lua", "go", "markdown", "markdown_inline" }, auto_install = true, highlight = { enable = true, },
+			ensure_installed = { "c", "lua", "go", "markdown", "markdown_inline" }, auto_install = true, highlight = { enable = true, },
 		}
 	},
 	{
