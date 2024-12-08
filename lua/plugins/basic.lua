@@ -6,13 +6,19 @@ local M = {
 	{
 		"navarasu/onedark.nvim",
 		opts = {
-			-- transparent = true,
+			transparent = true,
 			style = "darker",
 		},
 		init = function()
 			vim.cmd "colorscheme onedark"
 		end
 	},
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- 	init = function()
+	-- 		vim.cmd "colorscheme tokyonight"
+	-- 	end
+	-- },
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = {

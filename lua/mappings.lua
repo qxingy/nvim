@@ -36,7 +36,7 @@ map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
 map("n", "gc", "Lspsaga incomint_calls<CR>")
 map("n", "gC", "Lspsaga outgoing_calls<CR>")
 
-map("n", "T", "ToggleTerm<CR>")
+map("n", "<leader>t", "ToggleTerm<CR>")
 
 -- Move to previous/next
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>')
