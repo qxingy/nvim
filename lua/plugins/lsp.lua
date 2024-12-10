@@ -50,8 +50,8 @@ local M = {
 					documentation = cmp.config.window.bordered(),
 				},
 				mapping = {
-					["<C-j>"] = cmp.mapping.scroll_docs(-4),
-					["<C-k>"] = cmp.mapping.scroll_docs(4),
+					["<C-p>"] = cmp.mapping.scroll_docs(-1),
+					["<C-n>"] = cmp.mapping.scroll_docs(1),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 				},
 				sources = cmp.config.sources(

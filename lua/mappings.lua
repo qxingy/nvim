@@ -78,3 +78,5 @@ map('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>')
 map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>')
 map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>')
 map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>')
+
+map('n', '<leader>t', '<Cmd>belowright split | term<CR>')
