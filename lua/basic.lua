@@ -14,11 +14,14 @@ vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
 
 --缩进
-vim.bo.expandtab = true --使用空格字符缩进
-vim.o.tabstop = 4
-vim.o.softtabstop = 4   --空格数
-vim.bo.shiftwidth = 4   --shift >> 空格数
-vim.o.smarttab = false
+vim.bo.smartindent = true --智能缩进
+vim.bo.expandtab = true   --使用空格字符缩进
+vim.bo.tabstop = 4
+vim.bo.softtabstop = 4    --空格数
+vim.bo.shiftwidth = 4     --shift >> 空格数
+
+vim.wo.number = true
+vim.wo.colorcolumn = '80'
 
 --关闭自带explore
 vim.g.loaded_netrw = 1

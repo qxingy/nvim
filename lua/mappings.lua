@@ -1,4 +1,3 @@
-
 function _G.set_terminal_keymaps()
     local opts = { buffer = 0 }
 	vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
@@ -18,11 +17,12 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
-map("", "<C-s>", "<Esc>:lua vim.lsp.buf.format()<CR>")
+map("", "<C-s>", "<Esc>:lua vim.lsp.buf.format()<CR><Cmd>w<CR>")
+map("i", "<C-s>", "<Esc>:lua vim.lsp.buf.format()<CR><Cmd>w<CR>")
+
 map("", "<leader>n", "<Esc>:tabnext<CR>")
 map("", "<leader>p", "<Esc>:tabprevious<CR>")
 
-map("i", "<C-s>", "<Esc>:lua vim.lsp.buf.format()<CR> :w<CR>")
 
 map("n", "<leader>f", ":Telescope<CR>")
 map("n", "<leader>b", ":NvimTreeOpen<CR>")
@@ -79,4 +79,4 @@ map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>')
 map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>')
 map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>')
 
-map('n', '<leader>t', '<Cmd>belowright split | term<CR>')
+map('n', '<leader>t', '<Cmd>belowright split | term<CR>a')
