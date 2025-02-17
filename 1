@@ -64,7 +64,7 @@ local M = {
 				end,
 			})
 
-			require('lspconfig').lua_ls.setup({ settings = { Lua = { format = { enable = true, defaultCofnig = { indent_style = "space", indent_size = 4, tab_width = 4 } }, diagnostics = { globals = { "vim" } } } } })
+			require('lspconfig').lua_ls.setup({ settings = { Lua = { format = {enable=true ,defaultCofnig = { indent_style = "space", indent_size = "4", tab_width = "4" } }, diagnostics = { globals = { "vim" } } } } })
 		end
 	},
 	{
@@ -80,7 +80,7 @@ local M = {
 				mapping = {
 					["<C-p>"] = cmp.mapping.scroll_docs(-1),
 					["<C-n>"] = cmp.mapping.scroll_docs(1),
-					["<CR>"] = cmp.mapping.confirm({select = true}),
+					["<CR>"] = cmp.mapping.complete(),
 				},
 				sources = cmp.config.sources(
 					{ { name = "nvim_lsp" } }
@@ -95,8 +95,8 @@ local M = {
 		opts = {},
 		event = "VeryLazy",
 		init = function()
-			vim.opt.timeout = true
-			vim.opt.timeoutlen = 300
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
 		end
 	}
 }

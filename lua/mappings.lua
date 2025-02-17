@@ -1,5 +1,5 @@
 function _G.set_terminal_keymaps()
-    local opts = { buffer = 0 }
+	local opts = { buffer = 0 }
 	vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
 	vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
 	vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
@@ -17,24 +17,19 @@ local function map(mode, lhs, rhs, opts)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
-map("", "<C-s>", "<Esc>:lua vim.lsp.buf.format()<CR><Cmd>w<CR>")
-map("i", "<C-s>", "<Esc>:lua vim.lsp.buf.format()<CR><Cmd>w<CR>")
-
 map("", "<leader>n", "<Esc>:tabnext<CR>")
 map("", "<leader>p", "<Esc>:tabprevious<CR>")
 
 
 map("n", "<leader>f", ":Telescope<CR>")
 map("n", "<leader>b", ":NvimTreeOpen<CR>")
-map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-
 map("n", "<leader>t", "ToggleTerm<CR>")
 
 -- Move to previous/next
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>')
 map('n', '<A-.>', '<Cmd>BufferNext<CR>')
 -- Re-order to previous/next
-map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>' )
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>')
 map('n', '<A->>', '<Cmd>BufferMoveNext<CR>')
 -- Goto buffer in position...
 map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
