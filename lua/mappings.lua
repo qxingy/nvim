@@ -26,15 +26,7 @@ map("", "<leader>p", "<Esc>:tabprevious<CR>")
 
 map("n", "<leader>f", ":Telescope<CR>")
 map("n", "<leader>b", ":NvimTreeOpen<CR>")
-map("n", "ga", ":Lspsaga code_action<CR>")
-map("n", "gh", ":Lspsaga hover_doc<CR>")
-map("n", "gf", ":Lspsaga finder<CR>")
-map("n", "gr", ":Lspsaga rename<CR>")
-map("n", "gt", ":Lspsaga goto_definition<CR>")
-map("n", "gT", ":Lspsaga goto_type_definition<CR>")
 map("n", "gd", ":lua vim.lsp.buf.definition()<CR>")
-map("n", "gc", "Lspsaga incomint_calls<CR>")
-map("n", "gC", "Lspsaga outgoing_calls<CR>")
 
 map("n", "<leader>t", "ToggleTerm<CR>")
 

@@ -1,39 +1,71 @@
+-- test
+function test() 
+end
+
+test()
+
 local M = {
-	-- {
-	-- 	"williamboman/mason-lspconfig",
-	-- 	opts = { ensure_installed = { "stylua", "lua_ls", "clangd", "clang-format" } },
-	-- 	dependencies = {
-	-- 		{ "williamboman/mason.nvim", opts = {} },
-	-- 	},
-	-- },
-	{
-		"neovim/nvim-lspconfig",
-		priority = 1000,
-		config = function()
-			require("lspconfig").gopls.setup {}
-			require("lspconfig").clangd.setup {}
-		end
-	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		config = function(_, opt)
 			require "nvim-treesitter.configs".setup(opt)
 		end,
 		opts = {
-			ensure_installed = { "c", "lua", "go", "markdown", "markdown_inline" }, auto_install = true, highlight = { enable = true, },
+			ensure_installed = { "c", "lua", "go", "markdown", "markdown_inline","python" }, auto_install = true, highlight = { enable = true, },
 		}
 	},
 	{
-		"nvimdev/lspsaga.nvim",
+		"williamboman/mason-lspconfig",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
+			{ "williamboman/mason.nvim" },
 		},
-		opts = {
-			outline = {
-				layout = "float"
-			}
-		}
+	},
+	{
+		"neovim/nvim-lspconfig",
+		cmd = 'LspInfo',
+		event = { 'BufReadPre', 'BufNewFile' },
+		dependencies = {
+			{ 'hrsh7th/cmp-nvim-lsp' },
+		},
+		init = function()
+			-- Reserve a space in the gutter
+			-- This will avoid an annoying layout shift in the screen
+			vim.opt.signcolumn = 'yes'
+		end,
+		config = function()
+			local lsp_defaults = require('lspconfig').util.default_config
+
+			-- Add cmp_nvim_lsp capabilities settings to lspconfig
+			-- This should be executed before you configure any language server
+			lsp_defaults.capabilities = vim.tbl_deep_extend(
+				'force',
+				lsp_defaults.capabilities,
+				require('cmp_nvim_lsp').default_capabilities()
+			)
+
+			-- LspAttach is where you enable features that only work
+			-- if there is a language server active in the file
+			vim.api.nvim_create_autocmd('LspAttach', {
+				desc = 'LSP actions',
+				callback = function(event)
+					local opts = { buffer = event.buf }
+
+					vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+					vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+					vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+					vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+					vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+					vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+					vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+					vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+					vim.keymap.set({ 'n', 'x' }, '<F3>',
+						'<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+					vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+				end,
+			})
+
+			require('lspconfig').lua_ls.setup({})
+		end
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -45,49 +77,16 @@ local M = {
 						require("luasnip").lsp_expand(args.body)
 					end
 				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
 				mapping = {
 					["<C-p>"] = cmp.mapping.scroll_docs(-1),
 					["<C-n>"] = cmp.mapping.scroll_docs(1),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<CR>"] = cmp.mapping.complete(),
 				},
 				sources = cmp.config.sources(
-					{ { name = "nvim_lsp" }, { name = "luasnip" } },
-					{ name = "buffer" }
+					{ { name = "nvim_lsp" } }
 				),
 			}
 		end,
-		config = function(_, opts)
-			local cmp = require("cmp")
-			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-			local lspconfig = require "lspconfig"
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			lspconfig.lua_ls.setup { settings = {
-				capabilities = capabilities,
-			} }
-
-			lspconfig.gopls.setup {
-				settings = {
-					capabilities = capabilities,
-				}
-			}
-
-			cmp.setup(opts)
-		end,
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			{ "windwp/nvim-autopairs", event = "InsertEnter", opts = {} }
-		}
 	},
 	{ "numToStr/Comment.nvim",         opts = {},                                 lazy = fase },
 	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
