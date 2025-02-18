@@ -1,7 +1,12 @@
 local M = {
 	{
 		"nvim-tree/nvim-web-devicons",
-		opts = {}
+		opts = {},
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
 	},
 	{
 		"navarasu/onedark.nvim",
@@ -10,8 +15,8 @@ local M = {
 			style = "darker",
 		},
 		init = function()
-			vim.cmd "colorscheme onedark"
-		end
+			vim.cmd("colorscheme onedark")
+		end,
 	},
 	-- {
 	-- 	"folke/tokyonight.nvim",
@@ -28,43 +33,49 @@ local M = {
 			},
 			filters = {
 				custom = {
-					".git"
-				}
-			}
-
-		}
+					".git",
+				},
+			},
+		},
 	},
 	{
 		"nvim-lualine/lualine.nvim",
 		opts = {
-			theme = "auto"
-		}
+			theme = "auto",
+		},
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = {}
 	},
 	{
 		"akinsho/toggleterm.nvim",
 		opts = {
 			direction = "float",
 			hidden = true,
-		}
+		},
 	},
 	{
 		"romgrk/barbar.nvim",
 		dependencies = {
-				"lewis6991/gitsigns.nvim",
-				"nvim-tree/nvim-web-devicons",
+			"lewis6991/gitsigns.nvim",
+			"nvim-tree/nvim-web-devicons",
 		},
 		init = function()
-				vim.g.barbar_auto_setup = false
+			vim.g.barbar_auto_setup = false
 		end,
-		opt = {
-
-		}
-	}
+	},
+	{ "numToStr/Comment.nvim", opts = {}, lazy = fase },
+	{ "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+	{
+		"folke/which-key.nvim",
+		opts = {},
+		event = "VeryLazy",
+		init = function()
+			vim.opt.timeout = true
+			vim.opt.timeoutlen = 300
+		end,
+	},
 }
 
 return M
