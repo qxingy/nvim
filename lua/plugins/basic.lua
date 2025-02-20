@@ -1,8 +1,8 @@
 local M = {
-	{
-		"nvim-tree/nvim-web-devicons",
-		opts = {},
-	},
+	"github/copilot.vim",
+	"nvim-tree/nvim-web-devicons",
+	"nvim-lua/plenary.nvim",
+
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",

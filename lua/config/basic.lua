@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 --关闭自带explore
 vim.g.loaded_netrw = 1
@@ -19,12 +20,12 @@ vim.opt.signcolumn = "yes"
 
 --缩进
 vim.opt.tabstop = 4
-vim.opt.expandtab = true   --使用空格字符缩进
-vim.opt.softtabstop = 4    --空格数
-vim.opt.shiftwidth = 4     --shift >> 空格数
+vim.opt.expandtab = true --使用空格字符缩进
+vim.opt.softtabstop = 4 --空格数
+vim.opt.shiftwidth = 4 --shift >> 空格数
 
 vim.opt.number = true
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = "80"
 
 --开启高亮
 vim.opt.termguicolors = true

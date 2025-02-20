@@ -1,8 +1,8 @@
 local M = {
 	{
 		"williamboman/mason-lspconfig",
-		dependices = {
-			"williamboman/mason.nvim",
+		dependencies = {
+			{ "williamboman/mason.nvim", opts = {} },
 		},
 	},
 	{
@@ -10,7 +10,7 @@ local M = {
 		cmd = "LspInfo",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lsp", opts = {} },
 		},
 		init = function()
 			vim.opt.signcolumn = "yes"
@@ -26,7 +26,7 @@ local M = {
 				callback = function(event)
 					local opts = { buffer = event.buf }
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
+					vim.keymap.set("n", "gh", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
