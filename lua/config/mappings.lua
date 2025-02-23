@@ -20,6 +20,7 @@ end
 map("", "<leader>n", "<Esc>:tabnext<CR>")
 map("", "<leader>p", "<Esc>:tabprevious<CR>")
 
+map("n", "<leader>/", ":Telescope find_files<CR>")
 map("n", "<leader>ff", ":Telescope find_files<CR>")
 map("n", "<leader>fg", ":Telescope live_grep<CR>")
 map("n", "<leader>fb", ":Telescope buffers<CR>")
