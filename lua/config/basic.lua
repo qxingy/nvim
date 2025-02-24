@@ -25,7 +25,8 @@ vim.opt.softtabstop = 4 --空格数
 vim.opt.shiftwidth = 4 --shift >> 空格数
 
 vim.opt.number = true
-vim.opt.colorcolumn = "80"
+--右侧参考线
+-- vim.opt.colorcolumn = "80"
 
 --开启高亮
 vim.opt.termguicolors = true
@@ -33,5 +34,3 @@ vim.opt.termguicolors = true
 --命令行高
 vim.opt.cmdheight = 2
 
---右侧参考线
---vim.wo.colorcolumn = "80"

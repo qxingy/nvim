@@ -9,21 +9,17 @@ local M = {
 		config = true,
 	},
 	{
-		"navarasu/onedark.nvim",
-		opts = {
-			transparent = true,
-			style = "darker",
-		},
+		"folke/tokyonight.nvim",
+        opts = {
+            transparent = true,
+            styles = {
+                sidebars = "transparent"
+            }
+        },
 		init = function()
-			vim.cmd("colorscheme onedark")
-		end,
+            vim.cmd "colorscheme tokyonight"
+		end
 	},
-	-- {
-	-- 	"folke/tokyonight.nvim",
-	-- 	init = function()
-	-- 		vim.cmd "colorscheme tokyonight"
-	-- 	end
-	-- },
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = {
