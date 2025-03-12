@@ -18,7 +18,12 @@ local M = {
 		config = function()
 			local servers = {
 				"lua_ls",
+                "clangd"
 			}
+
+            for _, server in ipairs(servers) do
+                require("lspconfig")[server].setup({})
+            end
 
 			local lsp_defaults = require("lspconfig").util.default_config
 
