@@ -70,6 +70,18 @@ local M = {
             vim.opt.timeoutlen = 300
         end,
     },
+
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        --@types snacks.Config
+        opts = {
+            dashboard = { enabled = true, },
+            explorer = { enabled = true },
+
+        }
+    }
 }
 
 return M
